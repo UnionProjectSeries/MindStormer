@@ -1,5 +1,7 @@
 <script setup>
 import titleHeader from "./components/header.vue"
+import OverflowWindow from "./components/overflowWindow/overflowWindow.vue";
+import {ref} from "vue"
 </script>
 
 <template>
