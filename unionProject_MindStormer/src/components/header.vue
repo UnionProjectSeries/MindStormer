@@ -1,12 +1,10 @@
 <script setup>
 import dropdownMenuBtn from "./buttons/dropdownMenuBtn.vue"
-import overflowWindow from "./overflowWindow/overflowWindow.vue"
-import {FolderOpenOutlined, SaveOutlined, PieChartOutlined, DesktopOutlined, FileOutlined} from "@ant-design/icons-vue"
+import {FolderOpenOutlined, SaveOutlined, PieChartOutlined, DesktopOutlined, FileOutlined, PlusCircleOutlined} from "@ant-design/icons-vue"
 import {ref} from "vue";
-import HorizontalMenuContainer from "./lists/horizontalMenuContainer.vue";
-import HorizontalMenuItem from "./lists/horizontalMenuItem.vue";
+import WelcomeDialog from "./MindStormerLocalComponents/dialog/welcomeDialog.vue";
 
-const displayWelcomeOverflow = ref(false)
+const displayWelcomeOverflow = ref(true)
 </script>
 
 <template>
@@ -14,6 +12,7 @@ const displayWelcomeOverflow = ref(false)
     <div class="column-display">
       <div class="column-item">
         <div class="row-display">
+          <h3 class="row-item">MindStormer</h3>
           <div class="row-item">
             <a-input size="small"></a-input>
           </div>
@@ -51,31 +50,32 @@ const displayWelcomeOverflow = ref(false)
               </a-menu>
             </template>
           </a-dropdown>
+          <a-dropdown>
+            <dropdown-menu-btn>
+              <template #label>
+                <DesktopOutlined class="inline-icon"/>
+                视图
+              </template>
+            </dropdown-menu-btn>
+            <template #overlay>
+              <a-menu>
+                <a-menu-item>
+                  显示左侧侧栏
+                </a-menu-item>
+                <a-menu-item>
+                  显示详细信息
+                </a-menu-item>
+                <a-menu-item>
+                  显示右侧侧栏
+                </a-menu-item>
+              </a-menu>
+            </template>
+          </a-dropdown>
         </div>
       </div>
     </div>
   </div>
-  <overflow-window :display="displayWelcomeOverflow" @close-overflow="displayWelcomeOverflow = false">
-    <template #content>
-      <div class="column-display">
-        <h1>欢迎！</h1>
-        <div class="column-item">欢迎使用Mind Stormer，选择下面其中一个选项，让我们开始吧！</div>
-        <horizontal-menu-container>
-          <horizontal-menu-item :main-color="'dodgerblue'">
-            <template #icon>
-              <FolderOpenOutlined/>
-            </template>
-            <template #title>
-              打开本地文件
-            </template>
-            <template #description>
-              从本地打开一个已保存的MindStormer文件
-            </template>
-          </horizontal-menu-item>
-        </horizontal-menu-container>
-      </div>
-    </template>
-  </overflow-window>
+  <welcome-dialog v-if="displayWelcomeOverflow"></welcome-dialog>
 </template>
 
 <style scoped>

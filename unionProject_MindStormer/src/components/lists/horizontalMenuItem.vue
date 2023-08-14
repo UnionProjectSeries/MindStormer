@@ -1,8 +1,9 @@
 <script setup>
 import {ref} from "vue";
 
-const props = defineProps(['main-color'])
-const mainThemeColor = ref(props["main-color"])
+const props = defineProps(['mainColor'])
+
+console.log(props["mainColor"])
 </script>
 
 <template>
@@ -21,13 +22,13 @@ const mainThemeColor = ref(props["main-color"])
 
 <style scoped>
 :root {
-  --mainColor: v-bind("props['main-color']");
+  --mainColor: v-bind("props['mainColor']");
 }
 .item-main-box {
   margin: 5px;
   padding: 10px;
   height: 30%;
-  flex: auto;
+  flex: 1;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -36,10 +37,10 @@ const mainThemeColor = ref(props["main-color"])
   cursor: pointer;
 }
 .item-main-box:hover {
-  background-color: var(--mainColor);
+  background-color: v-bind("props['mainColor']");
 }
 .item-icon {
-  color: var(--mainColor);
+  color: v-bind("props['mainColor']");
   font-size: 32px;
   transition: all 0.1s;
 }
@@ -47,7 +48,7 @@ const mainThemeColor = ref(props["main-color"])
   color: white;
 }
 .item-title {
-  color: var(--mainColor);
+  color: black;
   font-size: 24px;
   font-weight: bold;
   transition: all 0.1s;
@@ -57,7 +58,7 @@ const mainThemeColor = ref(props["main-color"])
   color: white;
 }
 .item-description {
-  color: var(--mainColor);
+  color: #545454;
   transition: all 0.1s;
 }
 .item-main-box:hover .item-description {
