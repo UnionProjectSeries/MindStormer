@@ -10,12 +10,14 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
+    "@braks/revue-draggable": "^0.4.3",
     "vue": "^3.3.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
     "ant-design-vue": "^3.2.20",
     "vite": "^4.4.5",
+    "vue-drag-resize": "^1.5.4",
     "vue-router": "^4.0.13"
   }
 }

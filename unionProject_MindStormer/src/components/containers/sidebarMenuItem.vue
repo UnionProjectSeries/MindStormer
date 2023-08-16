@@ -56,6 +56,7 @@ function handleOnClick() {
   font-size: v-bind("applyFontSize");
   transition: all 0.1s;
   cursor: pointer;
+  user-select: none;
 }
 
 .container:hover {

@@ -14,7 +14,8 @@ const props = defineProps(['position'])
   height: fit-content;
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
+  z-index: 500;
 }
 #left {
   top: 10px;

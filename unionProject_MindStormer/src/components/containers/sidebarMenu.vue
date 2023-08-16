@@ -27,5 +27,6 @@ function triggerSelected(targetKey) {
   flex-direction: v-bind("props['direction']");
   justify-content: center;
   align-items: center;
+  user-select: none;
 }
 </style>
