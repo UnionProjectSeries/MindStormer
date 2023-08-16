@@ -1,10 +1,17 @@
 <script setup>
+import {provide} from "vue"
 const props = defineProps(["direction"])
+provide('selectedItem', 'unui:none')
+
+function triggerSelected(targetKey) {
+  console.log("Parent Received Request")
+  provide('selectedItem', targetKey)
+}
 </script>
 
 <template>
   <div class="menu-container">
-    <slot></slot>
+    <slot @menuItemOnClick="triggerSelected"></slot>
   </div>
 </template>
 

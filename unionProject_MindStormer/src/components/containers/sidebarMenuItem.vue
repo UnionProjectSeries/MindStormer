@@ -1,7 +1,8 @@
 <script setup>
-import {computed} from "vue";
+import {computed, inject} from "vue";
 
-const props = defineProps(['description', 'tooltipDirection', 'fontSize'])
+const props = defineProps(['description', 'tooltipDirection', 'fontSize', 'key', 'selectable'])
+const emits = defineEmits(['menuItemOnClick'])
 const isDisplayTooltip = computed(()=>{
   if (props.description === "" || props.description === undefined) {
     return false;
@@ -17,13 +18,27 @@ const applyFontSize = computed(()=>{
   else {}
   return props.fontSize;
 })
+const selectedItem = inject('selectedItem')
+const itemUsingID = computed(()=>{
+  if (selectedItem === props.key && props.selectable === true) {
+    return "selected"
+  }
+  else {
+    return "unselected"
+  }
+})
+
+function handleOnClick() {
+  emits('menuItemOnClick', props.key)
+  console.log(selectedItem)
+}
 
 </script>
 
 <template>
   <a-tooltip :placement="props.tooltipDirection">
     <template #title v-if="isDisplayTooltip">{{props.description}}</template>
-    <div class="container">
+    <div class="container" :id="itemUsingID" @click="handleOnClick">
       <slot></slot>
     </div>
   </a-tooltip>
@@ -45,5 +60,15 @@ const applyFontSize = computed(()=>{
 
 .container:hover {
   background-color: rgb(235,235,235);
+}
+
+#selected {
+  background-color: dodgerblue;
+  color: white;
+  transition: all 0.1s;
+}
+
+#selected:hover {
+  background-color: #0f4479;
 }
 </style>

@@ -4,12 +4,18 @@ import HorizontalMenuContainer from "../../lists/horizontalMenuContainer.vue";
 import {FolderOpenOutlined, PlusCircleOutlined} from "@ant-design/icons-vue";
 import HorizontalMenuItem from "../../lists/horizontalMenuItem.vue";
 import {ref} from "vue";
+import OverflowWindow from "../../overflowWindow/overflowWindow.vue";
 const props = defineProps(['displayDialog'])
+const emits = defineEmits(["closeOverflow"])
 const displayWelcomeOverflow = ref(true)
+
+function triggerOnClose() {
+  emits("closeOverflow")
+}
 </script>
 
 <template>
-  <overflow-window :display="displayWelcomeOverflow" @close-overflow="displayWelcomeOverflow = false">
+  <overflow-window :display="displayWelcomeOverflow" @close-overflow="triggerOnClose">
     <template #content>
       <div class="column-display">
         <h1>欢迎！</h1>
