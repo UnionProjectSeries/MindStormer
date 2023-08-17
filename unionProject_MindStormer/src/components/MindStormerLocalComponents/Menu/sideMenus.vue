@@ -1,11 +1,11 @@
 <script setup>
 
 import SidebarContainer from "../../../components/containers/sidebarContainer.vue";
-import SidebarMenu from "../../../components/containers/sidebarMenu.vue";
-import SidebarMenuItem from "../../../components/containers/sidebarMenuItem.vue";
+import SidebarMenu from "../../Menus/sidebarMenu.vue";
+import SidebarMenuItem from "../../Menus/sidebarMenuItem.vue";
 import {PlusCircleOutlined, SelectOutlined, HighlightOutlined, FormOutlined, ForkOutlined, AppstoreOutlined, UndoOutlined, RedoOutlined, SearchOutlined, EditOutlined, ShareAltOutlined, LeftCircleOutlined, RightCircleOutlined, PlusSquareOutlined} from "@ant-design/icons-vue"
 import {ref} from "vue"
-import SidebarMenuDivider from "../../../components/containers/sidebarMenuDivider.vue";
+import SidebarMenuDivider from "../../Menus/sidebarMenuDivider.vue";
 
 const displayMoreLeftIcons = ref(false)
 const maxCount = ref(10)
