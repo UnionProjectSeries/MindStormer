@@ -1,18 +1,23 @@
 <script setup>
 import {computed, ref} from "vue";
+import {initBgColorSet, initBasicColorSet} from "../../js/colorSet.js";
 import DropdownMenuBtn from "../buttons/dropdownMenuBtn.vue";
 import RichTextBox from "../richtextUtil/richTextBox.vue";
+import {EditOutlined, CheckCircleOutlined, DeleteOutlined, FileFilled} from "@ant-design/icons-vue"
+
 const props = defineProps(['bgColor', 'content', "x", "y", "id"])
 const emits = defineEmits(['modifyContent'])
 const isInEditMode = ref(true)
 const objectDraggable = ref(true)
 const displayContent = ref(props.content)
+const displayColor = ref(props.bgColor)
 
 const applyBackgroundColor = computed(()=>{
   if (props.bgColor === "" || props.bgColor === undefined) {
-    return "#a0ddfd"
+    return initBgColorSet.blue
   }
   else {
+    displayColor.value = props.bgColor
     return props.bgColor
   }
 })
@@ -41,7 +46,12 @@ function exitEditMode() {
 }
 
 function triggerSaveBtn() {
-  emits('modifyContent', props.id, displayContent)
+  emits('modifyContent', props.id, "content", displayContent.value)
+}
+
+function triggerSaveColor(targetColor) {
+  emits('modifyContent', props.id, "bgColor", targetColor)
+  displayColor.value = targetColor
 }
 </script>
 
@@ -49,11 +59,13 @@ function triggerSaveBtn() {
   <div v-draggable="{update: objectDraggable, defaultPosition: getValidPosition}" class="container">
     <div class="notecard">
       <div v-if="isInEditMode">
-        <div class="column-item">编辑便签</div>
+        <div class="column-item"></div>
         <a-textarea class="column-item" v-model:value="displayContent"></a-textarea>
         <div class="row-display">
           <dropdown-menu-btn @click="exitEditMode" class="row-item">
-            <template #label>完成</template>
+            <template #label>
+              <CheckCircleOutlined/>
+            </template>
           </dropdown-menu-btn>
         </div>
       </div>
@@ -63,10 +75,34 @@ function triggerSaveBtn() {
         </div>
         <div style="flex: auto" class="row-display" id="hoverMenu">
           <dropdown-menu-btn class="row-item">
-            <template #label>删除</template>
+            <template #label>
+              <DeleteOutlined/>
+            </template>
           </dropdown-menu-btn>
           <dropdown-menu-btn class="row-item" @click="enterEditMode">
-            <template #label>编辑</template>
+            <template #label>
+              <EditOutlined/>
+            </template>
+          </dropdown-menu-btn>
+          <dropdown-menu-btn class="row-item" @click="triggerSaveColor(initBgColorSet.red)">
+            <template #label>
+              <FileFilled :style="{color: initBasicColorSet.red}"/>
+            </template>
+          </dropdown-menu-btn>
+          <dropdown-menu-btn class="row-item" @click="triggerSaveColor(initBgColorSet.yellow)">
+            <template #label>
+              <FileFilled :style="{color: initBasicColorSet.yellow}"/>
+            </template>
+          </dropdown-menu-btn>
+          <dropdown-menu-btn class="row-item" @click="triggerSaveColor(initBgColorSet.green)">
+            <template #label>
+              <FileFilled :style="{color: initBasicColorSet.green}"/>
+            </template>
+          </dropdown-menu-btn>
+          <dropdown-menu-btn class="row-item" @click="triggerSaveColor(initBgColorSet.blue)">
+            <template #label>
+              <FileFilled :style="{color: initBasicColorSet.blue}"/>
+            </template>
           </dropdown-menu-btn>
         </div>
       </div>
@@ -87,7 +123,7 @@ function triggerSaveBtn() {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  background-color: v-bind("applyBackgroundColor");
+  background-color: v-bind("displayColor");
   overflow-y: auto;
 }
 .column-display {
