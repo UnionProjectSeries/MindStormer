@@ -11,6 +11,10 @@
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "@braks/revue-draggable": "^0.4.3",
+    "@tiptap/pm": "^2.1.7",
+    "@tiptap/starter-kit": "^2.1.7",
+    "@tiptap/vue-3": "^2.1.7",
+    "uuid": "^9.0.0",
     "vue": "^3.3.4"
   },
   "devDependencies": {

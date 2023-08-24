@@ -55,38 +55,36 @@ function lastPage() {
       </sidebar-menu-item>
     </sidebar-menu>
 
-    <div class="row-display">
-      <sidebar-menu direction="column">
-        <sidebar-menu-item description="选择" tooltip-direction="right" key="select" :selectable="true">
-          <SelectOutlined/>
-        </sidebar-menu-item>
-        <sidebar-menu-item description="插入元素" tooltip-direction="right">
-          <PlusCircleOutlined @click="displayMoreLeftIcons = !displayMoreLeftIcons"/>
-        </sidebar-menu-item>
-        <template v-if="displayMoreLeftIcons">
-          <sidebar-menu-divider/>
-          <sidebar-menu-item description="插入墨迹" tooltip-direction="right" key="pen" :selectable="true">
-            <HighlightOutlined/>
-          </sidebar-menu-item>
-          <sidebar-menu-item description="插入便签" tooltip-direction="right" key="stickyNote" :selectable="true">
-            <FormOutlined/>
-          </sidebar-menu-item>
-          <sidebar-menu-item description="插入关系" tooltip-direction="right" key="relation" :selectable="true">
-            <ForkOutlined/>
-          </sidebar-menu-item>
-          <sidebar-menu-item description="插入组" tooltip-direction="right" key="group" :selectable="true">
-            <AppstoreOutlined/>
-          </sidebar-menu-item>
-        </template>
+    <sidebar-menu direction="row">
+      <sidebar-menu-item description="选择" tooltip-direction="bottom" key="select" :selectable="true">
+        <SelectOutlined/>
+      </sidebar-menu-item>
+      <sidebar-menu-item description="插入元素" tooltip-direction="bottom">
+        <PlusCircleOutlined @click="displayMoreLeftIcons = !displayMoreLeftIcons"/>
+      </sidebar-menu-item>
+      <template v-if="displayMoreLeftIcons">
         <sidebar-menu-divider/>
-        <sidebar-menu-item description="撤销" tooltip-direction="right">
-          <UndoOutlined/>
+        <sidebar-menu-item description="插入墨迹" tooltip-direction="bottom" key="pen" :selectable="true">
+          <HighlightOutlined/>
         </sidebar-menu-item>
-        <sidebar-menu-item description="重做" tooltip-direction="right">
-          <RedoOutlined/>
+        <sidebar-menu-item description="插入便签" tooltip-direction="bottom" key="stickyNote" :selectable="true" @click="$emit('createNewObj', 'notecard')">
+          <FormOutlined/>
         </sidebar-menu-item>
-      </sidebar-menu>
-    </div>
+        <sidebar-menu-item description="插入关系" tooltip-direction="bottom" key="relation" :selectable="true">
+          <ForkOutlined/>
+        </sidebar-menu-item>
+        <sidebar-menu-item description="插入组" tooltip-direction="bottom" key="group" :selectable="true">
+          <AppstoreOutlined/>
+        </sidebar-menu-item>
+      </template>
+      <sidebar-menu-divider/>
+      <sidebar-menu-item description="撤销" tooltip-direction="bottom">
+        <UndoOutlined/>
+      </sidebar-menu-item>
+      <sidebar-menu-item description="重做" tooltip-direction="bottom">
+        <RedoOutlined/>
+      </sidebar-menu-item>
+    </sidebar-menu>
   </sidebar-container>
 </template>
 

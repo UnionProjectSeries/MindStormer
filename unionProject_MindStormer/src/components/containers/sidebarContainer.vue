@@ -13,8 +13,9 @@ const props = defineProps(['position'])
   width: fit-content;
   height: fit-content;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   position: fixed;
+  align-items: center;
   z-index: 500;
 }
 #left {

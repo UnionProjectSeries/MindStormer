@@ -3,9 +3,8 @@
 </script>
 
 <template>
-  <Draggable handle="strong">
+  <Draggable>
     <div class="container">
-      <strong class="handler">Drag here</strong>
       <slot></slot>
     </div>
   </Draggable>
