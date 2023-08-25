@@ -2,7 +2,6 @@
 import {computed, ref} from "vue";
 import {initBgColorSet, initBasicColorSet} from "../../js/colorSet.js";
 import DropdownMenuBtn from "../buttons/dropdownMenuBtn.vue";
-import RichTextBox from "../richtextUtil/richTextBox.vue";
 import {EditOutlined, CheckCircleOutlined, DeleteOutlined, FileFilled} from "@ant-design/icons-vue"
 
 const props = defineProps(['bgColor', 'content', "x", "y", "id"])
